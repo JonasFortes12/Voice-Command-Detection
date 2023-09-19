@@ -467,3 +467,84 @@ plt.legend()
 
 # Exibir os gráficos
 plt.show()
+
+
+
+# ________________________________Questão 07________________________________________
+
+# Dividir as STFT dos sinais de áudio 'SIM' e 'NÃO' em 8 blocos de N/320 amostras
+divisionNumber = 8
+
+# Instânciar vetores para armazenar de cada bloco da STFT dividido por 8  
+STFT01DividedBlocs = []
+STFT02DividedBlocs = []
+STFT03DividedBlocs = []
+STFT04DividedBlocs = []
+STFT05DividedBlocs = []
+STFT06DividedBlocs = []
+STFT07DividedBlocs = []
+STFT08DividedBlocs = []
+STFT09DividedBlocs = []
+STFT10DividedBlocs = []
+
+# Armazenar cada bloco da STFT dividido por 8  
+for i in range(10):
+    STFT01DividedBlocs.append(np.array_split(audio01_STFT[i], divisionNumber)) #10x8x730 
+    STFT02DividedBlocs.append(np.array_split(audio02_STFT[i], divisionNumber))
+    STFT03DividedBlocs.append(np.array_split(audio03_STFT[i], divisionNumber))
+    STFT04DividedBlocs.append(np.array_split(audio04_STFT[i], divisionNumber))
+    STFT05DividedBlocs.append(np.array_split(audio05_STFT[i], divisionNumber))
+    STFT06DividedBlocs.append(np.array_split(audio06_STFT[i], divisionNumber))
+    STFT07DividedBlocs.append(np.array_split(audio07_STFT[i], divisionNumber))
+    STFT08DividedBlocs.append(np.array_split(audio08_STFT[i], divisionNumber))
+    STFT09DividedBlocs.append(np.array_split(audio09_STFT[i], divisionNumber))
+    STFT10DividedBlocs.append(np.array_split(audio10_STFT[i], divisionNumber))
+
+
+# Instânciar vetores para armazenar as energias de cada bloco (N/320 amostras)
+# Energias: 8 energias para cada uma das 10 STFTs
+STFT01BlocsEnergy = []
+STFT02BlocsEnergy = []
+STFT03BlocsEnergy = []
+STFT04BlocsEnergy = []
+STFT05BlocsEnergy = []
+STFT06BlocsEnergy = []
+STFT07BlocsEnergy = []
+STFT08BlocsEnergy = []
+STFT09BlocsEnergy = []
+STFT10BlocsEnergy = []
+
+# Calcula as 80 energias: 8 energias para cada uma das 10 partes dos STFT
+for i in range(10):
+    array01 = []
+    array02 = []
+    array03 = []
+    array04 = []
+    array05 = []
+    array06 = []
+    array07 = []
+    array08 = []
+    array09 = []
+    array10 = []
+    for j in range(8):
+        array01.append(np.sum(np.square(STFT01DividedBlocs[i][j])))
+        array02.append(np.sum(np.square(STFT02DividedBlocs[i][j])))
+        array03.append(np.sum(np.square(STFT03DividedBlocs[i][j])))
+        array04.append(np.sum(np.square(STFT04DividedBlocs[i][j])))
+        array05.append(np.sum(np.square(STFT05DividedBlocs[i][j])))
+        array06.append(np.sum(np.square(STFT06DividedBlocs[i][j])))
+        array07.append(np.sum(np.square(STFT07DividedBlocs[i][j])))
+        array08.append(np.sum(np.square(STFT08DividedBlocs[i][j])))
+        array09.append(np.sum(np.square(STFT09DividedBlocs[i][j])))
+        array10.append(np.sum(np.square(STFT10DividedBlocs[i][j])))
+    STFT01BlocsEnergy.append(array01)
+    STFT02BlocsEnergy.append(array02)
+    STFT03BlocsEnergy.append(array03)
+    STFT04BlocsEnergy.append(array04)
+    STFT05BlocsEnergy.append(array05)
+    STFT06BlocsEnergy.append(array06)
+    STFT07BlocsEnergy.append(array07)
+    STFT08BlocsEnergy.append(array08)
+    STFT09BlocsEnergy.append(array09)
+    STFT10BlocsEnergy.append(array10)
+    
