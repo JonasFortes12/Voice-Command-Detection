@@ -159,16 +159,16 @@ plt.show()
 # ________________________________Questão 03________________________________________
 
 # Calcular o módulo ao quadrado da transformada de Fourier de cada sinal de áudio
-audio01fft = np.abs(np.fft.fft(audio01Data))**2
-audio02fft = np.abs(np.fft.fft(audio02Data))**2
-audio03fft = np.abs(np.fft.fft(audio03Data))**2
-audio04fft = np.abs(np.fft.fft(audio04Data))**2
-audio05fft = np.abs(np.fft.fft(audio05Data))**2
-audio06fft = np.abs(np.fft.fft(audio06Data))**2
-audio07fft = np.abs(np.fft.fft(audio07Data))**2
-audio08fft = np.abs(np.fft.fft(audio08Data))**2
-audio09fft = np.abs(np.fft.fft(audio09Data))**2
-audio10fft = np.abs(np.fft.fft(audio10Data))**2
+audio01fft = np.abs(np.fft.fftshift(np.fft.fft(audio01Data)))**2
+audio02fft = np.abs(np.fft.fftshift(np.fft.fft(audio02Data)))**2
+audio03fft = np.abs(np.fft.fftshift(np.fft.fft(audio03Data)))**2
+audio04fft = np.abs(np.fft.fftshift(np.fft.fft(audio04Data)))**2
+audio05fft = np.abs(np.fft.fftshift(np.fft.fft(audio05Data)))**2
+audio06fft = np.abs(np.fft.fftshift(np.fft.fft(audio06Data)))**2
+audio07fft = np.abs(np.fft.fftshift(np.fft.fft(audio07Data)))**2
+audio08fft = np.abs(np.fft.fftshift(np.fft.fft(audio08Data)))**2
+audio09fft = np.abs(np.fft.fftshift(np.fft.fft(audio09Data)))**2
+audio10fft = np.abs(np.fft.fftshift(np.fft.fft(audio10Data)))**2
 
 # Definir valores do eixo X
 x = np.linspace(-np.pi, np.pi, audiosMatrix.shape[0])
