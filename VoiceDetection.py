@@ -282,3 +282,88 @@ plt.legend()
 
 # Exibir os gráficos
 plt.show()
+
+
+# ________________________________Questão 05________________________________________
+
+# Dividir os sinais da TF dos áudios 'SIM' e 'NÃO' em 80 blocos de N/320 amostras
+divisionNumber = 80
+audio01fftDivided = np.array_split(audio01fft_filtered, divisionNumber)
+audio02fftDivided = np.array_split(audio02fft_filtered, divisionNumber)
+audio03fftDivided = np.array_split(audio03fft_filtered, divisionNumber)
+audio04fftDivided = np.array_split(audio04fft_filtered, divisionNumber)
+audio05fftDivided = np.array_split(audio05fft_filtered, divisionNumber)
+audio06fftDivided = np.array_split(audio06fft_filtered, divisionNumber)
+audio07fftDivided = np.array_split(audio07fft_filtered, divisionNumber)
+audio08fftDivided = np.array_split(audio08fft_filtered, divisionNumber)
+audio09fftDivided = np.array_split(audio09fft_filtered, divisionNumber)
+audio10fftDivided = np.array_split(audio10fft_filtered, divisionNumber)
+
+# Instânciar vetores para armazenar as energias dos blocos de sinais
+audio01fft_filteredEnergies = []
+audio02fft_filteredEnergies = []
+audio03fft_filteredEnergies = []
+audio04fft_filteredEnergies = []
+audio05fft_filteredEnergies = []
+audio06fft_filteredEnergies = []
+audio07fft_filteredEnergies = []
+audio08fft_filteredEnergies = []
+audio09fft_filteredEnergies = []
+audio10fft_filteredEnergies = []
+
+# Calcular a energia de cada bloco nos 10 sinais de áudio
+for i in range(divisionNumber):
+    audio01fft_filteredEnergies.append(np.sum(np.square(audio01fftDivided[i])))
+    audio02fft_filteredEnergies.append(np.sum(np.square(audio02fftDivided[i])))
+    audio03fft_filteredEnergies.append(np.sum(np.square(audio03fftDivided[i])))
+    audio04fft_filteredEnergies.append(np.sum(np.square(audio04fftDivided[i])))
+    audio05fft_filteredEnergies.append(np.sum(np.square(audio05fftDivided[i])))
+    audio06fft_filteredEnergies.append(np.sum(np.square(audio06fftDivided[i])))
+    audio07fft_filteredEnergies.append(np.sum(np.square(audio07fftDivided[i])))
+    audio08fft_filteredEnergies.append(np.sum(np.square(audio08fftDivided[i])))
+    audio09fft_filteredEnergies.append(np.sum(np.square(audio09fftDivided[i])))
+    audio10fft_filteredEnergies.append(np.sum(np.square(audio10fftDivided[i])))
+    
+# Definir valores do eixo X
+x = np.arange(0, divisionNumber)
+
+
+# Criar uma figura para o gráfico de energias da TF dos áudios 'NÃO'
+plt.figure()
+
+# Plotar os sinais de áudio 'NÃO' 
+plt.plot(x, audio01fft_filteredEnergies, label='audio01', color='red')
+plt.plot(x, audio02fft_filteredEnergies, label='audio02', color='blue')
+plt.plot(x, audio03fft_filteredEnergies, label='audio03', color='green')
+plt.plot(x, audio04fft_filteredEnergies, label='audio04', color='black')
+plt.plot(x, audio05fft_filteredEnergies, label='audio05', color='orange')
+
+# Adicionar rótulos aos eixos
+plt.xlabel('Bloco')
+plt.ylabel('Energia')
+# Adicionar um título ao gráfico
+plt.title('Energia da Transformada de Fourier dos áudios "NÃO"')
+# Adicionar uma legenda
+plt.legend()
+
+
+# Criar uma figura para o gráfico de energias da TF dos áudios 'SIM'
+plt.figure()
+
+# Plotar os sinais de áudio 'SIM' 
+plt.plot(x, audio06fft_filteredEnergies, label='audio06', color='red')
+plt.plot(x, audio07fft_filteredEnergies, label='audio07', color='blue')
+plt.plot(x, audio08fft_filteredEnergies, label='audio08', color='green')
+plt.plot(x, audio09fft_filteredEnergies, label='audio09', color='black')
+plt.plot(x, audio10fft_filteredEnergies, label='audio10', color='orange')
+
+# Adicionar rótulos aos eixos
+plt.xlabel('Bloco')
+plt.ylabel('Energia')
+# Adicionar um título ao gráfico
+plt.title('Energia da Transformada de Fourier dos áudios "SIM"')
+# Adicionar uma legenda
+plt.legend()
+
+# Exibir os gráficos
+plt.show()
