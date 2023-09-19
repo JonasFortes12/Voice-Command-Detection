@@ -212,3 +212,73 @@ plt.legend()
 
 # Exibir os gráficos
 plt.show()
+
+
+# ________________________________Questão 04________________________________________
+
+
+# Definir os indices das freqências no intervalo de 0 a pi/2 
+x_filtered = np.where((x >= 0) & (x <= np.pi/2))[0]
+
+# Copiar os sinais da transformada de Fourier dos áudios
+audio01fft_filtered = audio01fft.copy()
+audio02fft_filtered = audio02fft.copy()
+audio03fft_filtered = audio03fft.copy()
+audio04fft_filtered = audio04fft.copy()
+audio05fft_filtered = audio05fft.copy()
+audio06fft_filtered = audio06fft.copy()
+audio07fft_filtered = audio07fft.copy()
+audio08fft_filtered = audio08fft.copy()
+audio09fft_filtered = audio09fft.copy()
+audio10fft_filtered = audio10fft.copy()
+
+# Anular as frequências fora do intervalo de 0 a pi/2 
+audio01fft_filtered[~x_filtered] = 0
+audio02fft_filtered[~x_filtered] = 0
+audio03fft_filtered[~x_filtered] = 0
+audio04fft_filtered[~x_filtered] = 0
+audio05fft_filtered[~x_filtered] = 0
+audio06fft_filtered[~x_filtered] = 0
+audio07fft_filtered[~x_filtered] = 0
+audio08fft_filtered[~x_filtered] = 0
+audio09fft_filtered[~x_filtered] = 0
+audio10fft_filtered[~x_filtered] = 0
+
+# Criar uma figura para o gráfico de transformada de Fourier dos áudios 'NÃO' (Filtada)
+plt.figure()
+
+# Plotar fft dos sinais de áudio 'NÃO' 
+plt.plot(x, audio01fft_filtered, label='audio01', color='red')
+plt.plot(x, audio02fft_filtered, label='audio02', color='blue')
+plt.plot(x, audio03fft_filtered, label='audio03', color='green')
+plt.plot(x, audio04fft_filtered, label='audio04', color='black')
+plt.plot(x, audio05fft_filtered, label='audio05', color='orange')
+
+# Adicionar rótulos aos eixos
+plt.xlabel('Frequência')
+plt.ylabel('Amplitude')
+# Adicionar um título ao gráfico
+plt.title('Transformada de Fourier dos sinais de áudio "NÃO"')
+# Adicionar uma legenda
+plt.legend()
+
+# Criar uma figura para o gráfico de transformada de Fourier dos áudios 'SIM'(Filtada)
+plt.figure()
+
+# Plotar fft dos sinais de áudio 'SIM' 
+plt.plot(x, audio06fft_filtered, label='audio06', color='red')
+plt.plot(x, audio07fft_filtered, label='audio07', color='blue')
+plt.plot(x, audio08fft_filtered, label='audio08', color='green')
+plt.plot(x, audio09fft_filtered, label='audio09', color='black')
+plt.plot(x, audio10fft_filtered, label='audio10', color='orange')
+
+# Adicionar rótulos aos eixos
+plt.xlabel('Frequência')
+plt.ylabel('Amplitude')
+# Adicionar um título ao gráfico
+plt.title('Transformada de Fourier dos sinais de áudio "SIM"')
+# Adicionar uma legenda
+plt.legend()
+
+# Exibir os gráficos
+plt.show()
