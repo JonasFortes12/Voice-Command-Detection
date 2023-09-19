@@ -244,7 +244,7 @@ audio08fft_filtered[~x_filtered] = 0
 audio09fft_filtered[~x_filtered] = 0
 audio10fft_filtered[~x_filtered] = 0
 
-# Criar uma figura para o gráfico de transformada de Fourier dos áudios 'NÃO' (Filtada)
+# Criar uma figura para o gráfico de transformada de Fourier dos áudios 'NÃO' (Filtrada)
 plt.figure()
 
 # Plotar fft dos sinais de áudio 'NÃO' 
@@ -262,7 +262,7 @@ plt.title('Transformada de Fourier dos sinais de áudio "NÃO"')
 # Adicionar uma legenda
 plt.legend()
 
-# Criar uma figura para o gráfico de transformada de Fourier dos áudios 'SIM'(Filtada)
+# Criar uma figura para o gráfico de transformada de Fourier dos áudios 'SIM'(Filtrada)
 plt.figure()
 
 # Plotar fft dos sinais de áudio 'SIM' 
@@ -362,6 +362,106 @@ plt.xlabel('Bloco')
 plt.ylabel('Energia')
 # Adicionar um título ao gráfico
 plt.title('Energia da Transformada de Fourier dos áudios "SIM"')
+# Adicionar uma legenda
+plt.legend()
+
+# Exibir os gráficos
+plt.show()
+
+
+# ________________________________Questão 06________________________________________
+
+# Dividir os sinais de áudio 'SIM' e 'NÃO' em 10 blocos de N/10 amostras
+divisionNumber = 10
+audio01Divided = np.array_split(audio01Data, divisionNumber)
+audio02Divided = np.array_split(audio02Data, divisionNumber)
+audio03Divided = np.array_split(audio03Data, divisionNumber)
+audio04Divided = np.array_split(audio04Data, divisionNumber)
+audio05Divided = np.array_split(audio05Data, divisionNumber)
+audio06Divided = np.array_split(audio06Data, divisionNumber)
+audio07Divided = np.array_split(audio07Data, divisionNumber)
+audio08Divided = np.array_split(audio08Data, divisionNumber)
+audio09Divided = np.array_split(audio09Data, divisionNumber)
+audio10Divided = np.array_split(audio10Data, divisionNumber)
+
+
+# Calcular o módulo ao quadrado da transformada de Fourier de cada bloco dos sinais de áudio
+# Transformada de Fourier de tempo curto (short-time Fourier transform – STFT)
+audio01_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio01Divided)))**2
+audio02_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio02Divided)))**2
+audio03_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio03Divided)))**2
+audio04_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio04Divided)))**2
+audio05_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio05Divided)))**2
+audio06_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio06Divided)))**2
+audio07_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio07Divided)))**2
+audio08_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio08Divided)))**2
+audio09_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio09Divided)))**2
+audio10_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio10Divided)))**2
+
+
+# Definir valores do eixo X
+x = np.linspace(-np.pi, np.pi, int(audiosMatrix.shape[0]/divisionNumber))
+
+# Definir os indices das freqências no intervalo de 0 a pi/2 
+x_filtered = np.where((x >= 0) & (x <= np.pi/2))[0]
+
+# Copiar os sinais da STFT dos áudios
+audio01_STFT_filtered = audio01_STFT.copy()
+audio02_STFT_filtered = audio02_STFT.copy()
+audio03_STFT_filtered = audio03_STFT.copy()
+audio04_STFT_filtered = audio04_STFT.copy()
+audio05_STFT_filtered = audio05_STFT.copy()
+audio06_STFT_filtered = audio06_STFT.copy()
+audio07_STFT_filtered = audio07_STFT.copy()
+audio08_STFT_filtered = audio08_STFT.copy()
+audio09_STFT_filtered = audio09_STFT.copy()
+audio10_STFT_filtered = audio10_STFT.copy()
+
+# Anular as frequências fora do intervalo de 0 a pi/2
+for i in range(divisionNumber):
+    audio01_STFT_filtered[i][~x_filtered] = 0
+    audio02_STFT_filtered[i][~x_filtered] = 0
+    audio03_STFT_filtered[i][~x_filtered] = 0
+    audio04_STFT_filtered[i][~x_filtered] = 0
+    audio05_STFT_filtered[i][~x_filtered] = 0
+    audio06_STFT_filtered[i][~x_filtered] = 0
+    audio07_STFT_filtered[i][~x_filtered] = 0
+    audio08_STFT_filtered[i][~x_filtered] = 0
+    audio09_STFT_filtered[i][~x_filtered] = 0
+    audio10_STFT_filtered[i][~x_filtered] = 0
+
+# Criar uma figura para o gráfico de transformada de Fourier dos áudios 'NÃO' (Filtrada)
+plt.figure()
+
+#Definir cores para as linhas dos gráficos de STFT
+lineColors = ['red', 'blue', 'green', 'orange', 'purple', 'pink', 'cyan', 'brown', 'gray', 'olive']
+
+# Plotar fft dos sinais de áudio 'NÃO'
+for i in range(divisionNumber): 
+    color = lineColors[i % len(lineColors)]
+    plt.plot(x, audio01_STFT_filtered[i], label=f'bloco {i+1}', color=color)
+
+# Adicionar rótulos aos eixos
+plt.xlabel('Bloco')
+plt.ylabel('Frequência')
+# Adicionar um título ao gráfico
+plt.title('Transformada de Fourier de tempo curto do sinal de áudio "NÃO"')
+# Adicionar uma legenda
+plt.legend()
+
+# Criar uma figura para o gráfico de transformada de Fourier dos áudios 'SIM'(Filtrada)
+plt.figure()
+
+# Plotar fft dos sinais de áudio 'SIM'
+for i in range(divisionNumber): 
+    color = lineColors[i % len(lineColors)]
+    plt.plot(x, audio06_STFT_filtered[i], label=f'bloco {i+1}', color=color)    
+
+# Adicionar rótulos aos eixos
+plt.xlabel('Bloco')
+plt.ylabel('Frequência')
+# Adicionar um título ao gráfico
+plt.title('Transformada de Fourier de tempo curto do sinal de áudio "SIM"')
 # Adicionar uma legenda
 plt.legend()
 
