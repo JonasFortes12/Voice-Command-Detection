@@ -220,42 +220,36 @@ plt.show()
 # Definir os indices das freqências no intervalo de 0 a pi/2 
 x_filtered = np.where((x >= 0) & (x <= np.pi/2))[0]
 
-# Copiar os sinais da transformada de Fourier dos áudios
-audio01fft_filtered = audio01fft.copy()
-audio02fft_filtered = audio02fft.copy()
-audio03fft_filtered = audio03fft.copy()
-audio04fft_filtered = audio04fft.copy()
-audio05fft_filtered = audio05fft.copy()
-audio06fft_filtered = audio06fft.copy()
-audio07fft_filtered = audio07fft.copy()
-audio08fft_filtered = audio08fft.copy()
-audio09fft_filtered = audio09fft.copy()
-audio10fft_filtered = audio10fft.copy()
+#Definindo os intervalos de corte do sinal (0 a pi/2 )
+x_freqCutStart = x_filtered[0]
+x_freqCutEnd = x_filtered[len(x_filtered)-1] + 1
 
-# Anular as frequências fora do intervalo de 0 a pi/2 
-audio01fft_filtered[~x_filtered] = 0
-audio02fft_filtered[~x_filtered] = 0
-audio03fft_filtered[~x_filtered] = 0
-audio04fft_filtered[~x_filtered] = 0
-audio05fft_filtered[~x_filtered] = 0
-audio06fft_filtered[~x_filtered] = 0
-audio07fft_filtered[~x_filtered] = 0
-audio08fft_filtered[~x_filtered] = 0
-audio09fft_filtered[~x_filtered] = 0
-audio10fft_filtered[~x_filtered] = 0
+# Filtrando os sinais FT para as baixas frequências (0 a pi/2 ) 
+audio01fft_filtered = audio01fft[x_freqCutStart:x_freqCutEnd]
+audio02fft_filtered = audio02fft[x_freqCutStart:x_freqCutEnd]
+audio03fft_filtered = audio03fft[x_freqCutStart:x_freqCutEnd]
+audio04fft_filtered = audio04fft[x_freqCutStart:x_freqCutEnd]
+audio05fft_filtered = audio05fft[x_freqCutStart:x_freqCutEnd]
+audio06fft_filtered = audio06fft[x_freqCutStart:x_freqCutEnd]
+audio07fft_filtered = audio07fft[x_freqCutStart:x_freqCutEnd]
+audio08fft_filtered = audio08fft[x_freqCutStart:x_freqCutEnd]
+audio09fft_filtered = audio09fft[x_freqCutStart:x_freqCutEnd]
+audio10fft_filtered = audio10fft[x_freqCutStart:x_freqCutEnd]
+
+
 
 # Criar uma figura para o gráfico de transformada de Fourier dos áudios 'NÃO' (Filtrada)
 plt.figure()
 
 # Plotar fft dos sinais de áudio 'NÃO' 
-plt.plot(x, audio01fft_filtered, label='audio01', color='red')
-plt.plot(x, audio02fft_filtered, label='audio02', color='blue')
-plt.plot(x, audio03fft_filtered, label='audio03', color='green')
-plt.plot(x, audio04fft_filtered, label='audio04', color='black')
-plt.plot(x, audio05fft_filtered, label='audio05', color='orange')
+plt.plot(x_filtered, audio01fft_filtered, label='audio01', color='red')
+plt.plot(x_filtered, audio02fft_filtered, label='audio02', color='blue')
+plt.plot(x_filtered, audio03fft_filtered, label='audio03', color='green')
+plt.plot(x_filtered, audio04fft_filtered, label='audio04', color='black')
+plt.plot(x_filtered, audio05fft_filtered, label='audio05', color='orange')
 
 # Adicionar rótulos aos eixos
-plt.xlabel('Frequência')
+plt.xlabel('Amostra')
 plt.ylabel('Amplitude')
 # Adicionar um título ao gráfico
 plt.title('Transformada de Fourier dos sinais de áudio "NÃO"')
@@ -266,14 +260,14 @@ plt.legend()
 plt.figure()
 
 # Plotar fft dos sinais de áudio 'SIM' 
-plt.plot(x, audio06fft_filtered, label='audio06', color='red')
-plt.plot(x, audio07fft_filtered, label='audio07', color='blue')
-plt.plot(x, audio08fft_filtered, label='audio08', color='green')
-plt.plot(x, audio09fft_filtered, label='audio09', color='black')
-plt.plot(x, audio10fft_filtered, label='audio10', color='orange')
+plt.plot(x_filtered, audio06fft_filtered, label='audio06', color='red')
+plt.plot(x_filtered, audio07fft_filtered, label='audio07', color='blue')
+plt.plot(x_filtered, audio08fft_filtered, label='audio08', color='green')
+plt.plot(x_filtered, audio09fft_filtered, label='audio09', color='black')
+plt.plot(x_filtered, audio10fft_filtered, label='audio10', color='orange')
 
 # Adicionar rótulos aos eixos
-plt.xlabel('Frequência')
+plt.xlabel('Amostra')
 plt.ylabel('Amplitude')
 # Adicionar um título ao gráfico
 plt.title('Transformada de Fourier dos sinais de áudio "SIM"')
@@ -405,30 +399,20 @@ x = np.linspace(-np.pi, np.pi, int(audiosMatrix.shape[0]/divisionNumber))
 # Definir os indices das freqências no intervalo de 0 a pi/2 
 x_filtered = np.where((x >= 0) & (x <= np.pi/2))[0]
 
-# Copiar os sinais da STFT dos áudios
-audio01_STFT_filtered = audio01_STFT.copy()
-audio02_STFT_filtered = audio02_STFT.copy()
-audio03_STFT_filtered = audio03_STFT.copy()
-audio04_STFT_filtered = audio04_STFT.copy()
-audio05_STFT_filtered = audio05_STFT.copy()
-audio06_STFT_filtered = audio06_STFT.copy()
-audio07_STFT_filtered = audio07_STFT.copy()
-audio08_STFT_filtered = audio08_STFT.copy()
-audio09_STFT_filtered = audio09_STFT.copy()
-audio10_STFT_filtered = audio10_STFT.copy()
+#Definir os índices dos blocos da STFT
+N_blocs = np.arange(audio01_STFT.shape[0])
 
-# Anular as frequências fora do intervalo de 0 a pi/2
-for i in range(divisionNumber):
-    audio01_STFT_filtered[i][~x_filtered] = 0
-    audio02_STFT_filtered[i][~x_filtered] = 0
-    audio03_STFT_filtered[i][~x_filtered] = 0
-    audio04_STFT_filtered[i][~x_filtered] = 0
-    audio05_STFT_filtered[i][~x_filtered] = 0
-    audio06_STFT_filtered[i][~x_filtered] = 0
-    audio07_STFT_filtered[i][~x_filtered] = 0
-    audio08_STFT_filtered[i][~x_filtered] = 0
-    audio09_STFT_filtered[i][~x_filtered] = 0
-    audio10_STFT_filtered[i][~x_filtered] = 0
+# Filtrando os sinais da STFT para as baixas frequências (0 a pi/2 ) 
+audio01_STFT_filtered = audio01_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio02_STFT_filtered = audio02_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio03_STFT_filtered = audio03_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio04_STFT_filtered = audio04_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio05_STFT_filtered = audio05_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio06_STFT_filtered = audio06_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio07_STFT_filtered = audio07_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio08_STFT_filtered = audio08_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio09_STFT_filtered = audio09_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio10_STFT_filtered = audio10_STFT[N_blocs[:, np.newaxis], x_filtered]
 
 # Criar uma figura para o gráfico de transformada de Fourier dos áudios 'NÃO' (Filtrada)
 plt.figure()
@@ -439,11 +423,11 @@ lineColors = ['red', 'blue', 'green', 'orange', 'purple', 'pink', 'cyan', 'brown
 # Plotar fft dos sinais de áudio 'NÃO'
 for i in range(divisionNumber): 
     color = lineColors[i % len(lineColors)]
-    plt.plot(x, audio01_STFT_filtered[i], label=f'bloco {i+1}', color=color)
+    plt.plot(x_filtered, audio01_STFT_filtered[i], label=f'bloco {i+1}', color=color)
 
 # Adicionar rótulos aos eixos
-plt.xlabel('Bloco')
-plt.ylabel('Frequência')
+plt.xlabel('Amostra')
+plt.ylabel('Amplitude')
 # Adicionar um título ao gráfico
 plt.title('Transformada de Fourier de tempo curto do sinal de áudio "NÃO"')
 # Adicionar uma legenda
@@ -455,11 +439,11 @@ plt.figure()
 # Plotar fft dos sinais de áudio 'SIM'
 for i in range(divisionNumber): 
     color = lineColors[i % len(lineColors)]
-    plt.plot(x, audio06_STFT_filtered[i], label=f'bloco {i+1}', color=color)    
+    plt.plot(x_filtered, audio06_STFT_filtered[i], label=f'bloco {i+1}', color=color)    
 
 # Adicionar rótulos aos eixos
-plt.xlabel('Bloco')
-plt.ylabel('Frequência')
+plt.xlabel('Amostra')
+plt.ylabel('Amplitude')
 # Adicionar um título ao gráfico
 plt.title('Transformada de Fourier de tempo curto do sinal de áudio "SIM"')
 # Adicionar uma legenda
