@@ -487,9 +487,9 @@ STFT08DividedBlocs = []
 STFT09DividedBlocs = []
 STFT10DividedBlocs = []
 
-# Armazenar cada bloco da STFT dividido por 8  
+# Armazenar cada bloco da STFT dividido por 8 (10x8x730)
 for i in range(10):
-    STFT01DividedBlocs.append(np.array_split(audio01_STFT[i], divisionNumber)) #10x8x730 
+    STFT01DividedBlocs.append(np.array_split(audio01_STFT[i], divisionNumber))
     STFT02DividedBlocs.append(np.array_split(audio02_STFT[i], divisionNumber))
     STFT03DividedBlocs.append(np.array_split(audio03_STFT[i], divisionNumber))
     STFT04DividedBlocs.append(np.array_split(audio04_STFT[i], divisionNumber))
@@ -514,37 +514,82 @@ STFT08BlocsEnergy = []
 STFT09BlocsEnergy = []
 STFT10BlocsEnergy = []
 
-# Calcula as 80 energias: 8 energias para cada uma das 10 partes dos STFT
+# Calcular as 80 energias: 8 energias para cada uma das 10 partes dos STFT
 for i in range(10):
-    array01 = []
-    array02 = []
-    array03 = []
-    array04 = []
-    array05 = []
-    array06 = []
-    array07 = []
-    array08 = []
-    array09 = []
-    array10 = []
     for j in range(8):
-        array01.append(np.sum(np.square(STFT01DividedBlocs[i][j])))
-        array02.append(np.sum(np.square(STFT02DividedBlocs[i][j])))
-        array03.append(np.sum(np.square(STFT03DividedBlocs[i][j])))
-        array04.append(np.sum(np.square(STFT04DividedBlocs[i][j])))
-        array05.append(np.sum(np.square(STFT05DividedBlocs[i][j])))
-        array06.append(np.sum(np.square(STFT06DividedBlocs[i][j])))
-        array07.append(np.sum(np.square(STFT07DividedBlocs[i][j])))
-        array08.append(np.sum(np.square(STFT08DividedBlocs[i][j])))
-        array09.append(np.sum(np.square(STFT09DividedBlocs[i][j])))
-        array10.append(np.sum(np.square(STFT10DividedBlocs[i][j])))
-    STFT01BlocsEnergy.append(array01)
-    STFT02BlocsEnergy.append(array02)
-    STFT03BlocsEnergy.append(array03)
-    STFT04BlocsEnergy.append(array04)
-    STFT05BlocsEnergy.append(array05)
-    STFT06BlocsEnergy.append(array06)
-    STFT07BlocsEnergy.append(array07)
-    STFT08BlocsEnergy.append(array08)
-    STFT09BlocsEnergy.append(array09)
-    STFT10BlocsEnergy.append(array10)
+        STFT01BlocsEnergy.append(np.sum(np.square(STFT01DividedBlocs[i][j])))
+        STFT02BlocsEnergy.append(np.sum(np.square(STFT02DividedBlocs[i][j])))
+        STFT03BlocsEnergy.append(np.sum(np.square(STFT03DividedBlocs[i][j])))
+        STFT04BlocsEnergy.append(np.sum(np.square(STFT04DividedBlocs[i][j])))
+        STFT05BlocsEnergy.append(np.sum(np.square(STFT05DividedBlocs[i][j])))
+        STFT06BlocsEnergy.append(np.sum(np.square(STFT06DividedBlocs[i][j])))
+        STFT07BlocsEnergy.append(np.sum(np.square(STFT07DividedBlocs[i][j])))
+        STFT08BlocsEnergy.append(np.sum(np.square(STFT08DividedBlocs[i][j])))
+        STFT09BlocsEnergy.append(np.sum(np.square(STFT09DividedBlocs[i][j])))
+        STFT10BlocsEnergy.append(np.sum(np.square(STFT10DividedBlocs[i][j])))
+  
     
+    
+# ________________________________Questão 08________________________________________
+    # Há 80 energias em cada domínio do sinal: tempo, TF e STFT
+    
+# Energias do domínio do tempo
+audio01Energies 
+audio02Energies
+audio03Energies
+audio04Energies
+audio05Energies
+audio06Energies
+audio07Energies
+audio08Energies
+audio09Energies
+audio10Energies
+
+# Energias do domínio da TF
+audio01fft_filteredEnergies
+audio02fft_filteredEnergies
+audio03fft_filteredEnergies
+audio04fft_filteredEnergies
+audio05fft_filteredEnergies
+audio06fft_filteredEnergies
+audio07fft_filteredEnergies
+audio08fft_filteredEnergies
+audio09fft_filteredEnergies
+audio10fft_filteredEnergies
+
+# Energias do domínio da STFT
+STFT01BlocsEnergy
+STFT02BlocsEnergy
+STFT03BlocsEnergy
+STFT04BlocsEnergy
+STFT05BlocsEnergy
+STFT06BlocsEnergy
+STFT07BlocsEnergy
+STFT08BlocsEnergy
+STFT09BlocsEnergy
+STFT10BlocsEnergy
+
+
+# Calcular média das energias do áudio "NAO" para o domínio do tempo
+meanTimeEnergy_NO = np.mean([audio01Energies, audio02Energies, audio03Energies, audio04Energies, audio05Energies])
+
+# Calcular média das energias do áudio "SIM" para o domínio do tempo
+meanTimeEnergy_YES = np.mean([audio06Energies, audio07Energies, audio08Energies, audio09Energies, audio10Energies])
+
+# Calcular média das energias do áudio "NAO" para o domínio de TF
+meanTFEnergy_NO = np.mean([audio01fft_filteredEnergies, audio02fft_filteredEnergies, audio03fft_filteredEnergies, audio04fft_filteredEnergies, audio05fft_filteredEnergies])
+
+# Calcular média das energias do áudio "SIM" para o domínio de TF
+meanTFEnergy_YES = np.mean([audio06fft_filteredEnergies, audio07fft_filteredEnergies, audio08fft_filteredEnergies, audio09fft_filteredEnergies, audio10fft_filteredEnergies])
+
+# Calcular média das energias do áudio "NAO" para o domínio de STFT
+meanSTFTEnergy_NO = np.mean([STFT01BlocsEnergy, STFT02BlocsEnergy, STFT03BlocsEnergy, STFT04BlocsEnergy, STFT05BlocsEnergy])
+
+# Calcular média das energias do áudio "SIM" para o domínio de STFT
+meanSTFTEnergy_YES = np.mean([STFT06BlocsEnergy, STFT07BlocsEnergy, STFT08BlocsEnergy, STFT09BlocsEnergy, STFT10BlocsEnergy])
+
+# print(meanTimeEnergy_NO, meanTimeEnergy_YES)
+
+# print(meanTFEnergy_NO, meanTFEnergy_YES)
+
+# print(meanSTFTEnergy_NO, meanSTFTEnergy_YES)
