@@ -572,8 +572,210 @@ meanSTFTEnergy_NO = np.mean([STFT01BlocsEnergy, STFT02BlocsEnergy, STFT03BlocsEn
 # Calcular média das energias do áudio "SIM" para o domínio de STFT
 meanSTFTEnergy_YES = np.mean([STFT06BlocsEnergy, STFT07BlocsEnergy, STFT08BlocsEnergy, STFT09BlocsEnergy, STFT10BlocsEnergy])
 
-# print(meanTimeEnergy_NO, meanTimeEnergy_YES)
 
-# print(meanTFEnergy_NO, meanTFEnergy_YES)
+# ________________________________Questão 09________________________________________
 
-# print(meanSTFTEnergy_NO, meanSTFTEnergy_YES)
+# Carregar os sinais de áudios para o teste
+audiosMatDataTest = scipy.io.loadmat('./data/InputDataTest.mat')
+
+# Pegar a matriz de dados dos sinais de áudio
+audiosTestMatrix = audiosMatDataTest['InputDataTest']
+
+# Separar os sinais de áudio 'NÃO'
+audio01DataTest = audiosTestMatrix[:, 0]
+audio02DataTest = audiosTestMatrix[:, 1]
+audio03DataTest = audiosTestMatrix[:, 2]
+
+# Separar os sinais de áudio 'SIM'
+audio04DataTest = audiosTestMatrix[:, 3]
+audio05DataTest = audiosTestMatrix[:, 4]
+audio06DataTest = audiosTestMatrix[:, 5]
+audio07DataTest = audiosTestMatrix[:, 6]
+
+
+
+
+
+
+    #______________________ Cálculo de energias para o domínio do tempo ________________________
+
+# Dividir os sinais de teste 'SIM' e 'NÃO' em 80 blocos de N/80 amostras
+divisionNumber = 80
+audio01TestDivided = np.array_split(audio01DataTest, divisionNumber)
+audio02TestDivided = np.array_split(audio02DataTest, divisionNumber)
+audio03TestDivided = np.array_split(audio03DataTest, divisionNumber)
+audio04TestDivided = np.array_split(audio04DataTest, divisionNumber)
+audio05TestDivided = np.array_split(audio05DataTest, divisionNumber)
+audio06TestDivided = np.array_split(audio06DataTest, divisionNumber)
+audio07TestDivided = np.array_split(audio07DataTest, divisionNumber)
+
+
+# Instânciar vetores para armazenar as energias dos blocos de sinais
+audio01TestEnergies = []
+audio02TestEnergies = []
+audio03TestEnergies = []
+audio04TestEnergies = []
+audio05TestEnergies = []
+audio06TestEnergies = []
+audio07TestEnergies = []
+
+# Calcular a energia de cada bloco nos 10 sinais de áudio
+for i in range(divisionNumber):
+    audio01TestEnergies.append(np.sum(np.square(audio01TestDivided[i])))
+    audio02TestEnergies.append(np.sum(np.square(audio02TestDivided[i])))
+    audio03TestEnergies.append(np.sum(np.square(audio03TestDivided[i])))
+    audio04TestEnergies.append(np.sum(np.square(audio04TestDivided[i])))
+    audio05TestEnergies.append(np.sum(np.square(audio05TestDivided[i])))
+    audio06TestEnergies.append(np.sum(np.square(audio06TestDivided[i])))
+    audio07TestEnergies.append(np.sum(np.square(audio07TestDivided[i])))
+
+
+
+    #______________________ Cálculo de energias para o domínio de TF ________________________
+     
+# Calcular o módulo ao quadrado da transformada de Fourier de cada sinal de teste
+audio01fft = np.abs(np.fft.fftshift(np.fft.fft(audio01DataTest)))**2
+audio02fft = np.abs(np.fft.fftshift(np.fft.fft(audio02DataTest)))**2
+audio03fft = np.abs(np.fft.fftshift(np.fft.fft(audio03DataTest)))**2
+audio04fft = np.abs(np.fft.fftshift(np.fft.fft(audio04DataTest)))**2
+audio05fft = np.abs(np.fft.fftshift(np.fft.fft(audio05DataTest)))**2
+audio06fft = np.abs(np.fft.fftshift(np.fft.fft(audio06DataTest)))**2
+audio07fft = np.abs(np.fft.fftshift(np.fft.fft(audio07DataTest)))**2
+
+# Definir valores do eixo X
+x = np.linspace(-np.pi, np.pi, audiosTestMatrix.shape[0])
+
+# Definir os indices das freqências no intervalo de 0 a pi/2 
+x_filtered = np.where((x >= 0) & (x <= np.pi/2))[0]
+
+#Definindo os intervalos de corte do sinal (0 a pi/2 )
+x_freqCutStart = x_filtered[0]
+x_freqCutEnd = x_filtered[len(x_filtered)-1] + 1
+
+# Filtrando os sinais FT para as baixas frequências (0 a pi/2) 
+audio01Testfft_filtered = audio01fft[x_freqCutStart:x_freqCutEnd]
+audio02Testfft_filtered = audio02fft[x_freqCutStart:x_freqCutEnd]
+audio03Testfft_filtered = audio03fft[x_freqCutStart:x_freqCutEnd]
+audio04Testfft_filtered = audio04fft[x_freqCutStart:x_freqCutEnd]
+audio05Testfft_filtered = audio05fft[x_freqCutStart:x_freqCutEnd]
+audio06Testfft_filtered = audio06fft[x_freqCutStart:x_freqCutEnd]
+audio07Testfft_filtered = audio07fft[x_freqCutStart:x_freqCutEnd]
+
+# Dividir os sinais da TF dos áudios de teste 'SIM' e 'NÃO' em 80 blocos
+divisionNumber = 80
+audio01TestfftDivided = np.array_split(audio01Testfft_filtered, divisionNumber)
+audio02TestfftDivided = np.array_split(audio02Testfft_filtered, divisionNumber)
+audio03TestfftDivided = np.array_split(audio03Testfft_filtered, divisionNumber)
+audio04TestfftDivided = np.array_split(audio04Testfft_filtered, divisionNumber)
+audio05TestfftDivided = np.array_split(audio05Testfft_filtered, divisionNumber)
+audio06TestfftDivided = np.array_split(audio06Testfft_filtered, divisionNumber)
+audio07TestfftDivided = np.array_split(audio07Testfft_filtered, divisionNumber)
+
+# Instânciar vetores para armazenar as energias dos blocos de sinais
+audio01Testfft_filteredEnergies = []
+audio02Testfft_filteredEnergies = []
+audio03Testfft_filteredEnergies = []
+audio04Testfft_filteredEnergies = []
+audio05Testfft_filteredEnergies = []
+audio06Testfft_filteredEnergies = []
+audio07Testfft_filteredEnergies = []
+
+
+# Calcular a energia de cada bloco nos 10 sinais de áudio
+for i in range(divisionNumber):
+    audio01Testfft_filteredEnergies.append(np.sum(np.square(audio01TestfftDivided[i])))
+    audio02Testfft_filteredEnergies.append(np.sum(np.square(audio02TestfftDivided[i])))
+    audio03Testfft_filteredEnergies.append(np.sum(np.square(audio03TestfftDivided[i])))
+    audio04Testfft_filteredEnergies.append(np.sum(np.square(audio04TestfftDivided[i])))
+    audio05Testfft_filteredEnergies.append(np.sum(np.square(audio05TestfftDivided[i])))
+    audio06Testfft_filteredEnergies.append(np.sum(np.square(audio06TestfftDivided[i])))
+    audio07Testfft_filteredEnergies.append(np.sum(np.square(audio07TestfftDivided[i])))
+    
+    
+
+    #______________________ Cálculo de energias para o domínio de STFT ________________________
+    
+    # Dividir os sinais de teste 'SIM' e 'NÃO' em 10 blocos de N/10 amostras
+divisionNumber = 10
+audio01TestDivided = np.array_split(audio01DataTest, divisionNumber)
+audio02TestDivided = np.array_split(audio02DataTest, divisionNumber)
+audio03TestDivided = np.array_split(audio03DataTest, divisionNumber)
+audio04TestDivided = np.array_split(audio04DataTest, divisionNumber)
+audio05TestDivided = np.array_split(audio05DataTest, divisionNumber)
+audio06TestDivided = np.array_split(audio06DataTest, divisionNumber)
+audio07TestDivided = np.array_split(audio07DataTest, divisionNumber)
+
+
+# Calcular o módulo ao quadrado da transformada de Fourier de cada bloco dos sinais de teste
+# Transformada de Fourier de tempo curto (short-time Fourier transform – STFT)
+audio01Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio01TestDivided)))**2
+audio02Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio02TestDivided)))**2
+audio03Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio03TestDivided)))**2
+audio04Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio04TestDivided)))**2
+audio05Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio05TestDivided)))**2
+audio06Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio06TestDivided)))**2
+audio07Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio07TestDivided)))**2
+
+
+# Definir valores do eixo X
+x = np.linspace(-np.pi, np.pi, int(audiosTestMatrix.shape[0]/divisionNumber))
+
+# Definir os indices das freqências no intervalo de 0 a pi/2 
+x_filtered = np.where((x >= 0) & (x <= np.pi/2))[0]
+
+#Definir os índices dos blocos da STFT
+N_blocs = np.arange(audio01Test_STFT.shape[0])
+
+# Filtrando os sinais da STFT para as baixas frequências (0 a pi/2 ) 
+audio01_STFT_filtered = audio01Test_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio02_STFT_filtered = audio02Test_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio03_STFT_filtered = audio03Test_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio04_STFT_filtered = audio04Test_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio05_STFT_filtered = audio05Test_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio06_STFT_filtered = audio06Test_STFT[N_blocs[:, np.newaxis], x_filtered]
+audio07_STFT_filtered = audio07Test_STFT[N_blocs[:, np.newaxis], x_filtered]
+
+# Dividir as STFT dos sinais de teste 'SIM' e 'NÃO' em 8 blocos de N/320 amostras
+divisionNumber = 8
+
+# Instânciar vetores para armazenar de cada bloco da STFT dividido por 8  
+STFT01TestDividedBlocs = []
+STFT02TestDividedBlocs = []
+STFT03TestDividedBlocs = []
+STFT04TestDividedBlocs = []
+STFT05TestDividedBlocs = []
+STFT06TestDividedBlocs = []
+STFT07TestDividedBlocs = []
+
+# Armazenar cada bloco da STFT dividido por 8 (10x8)
+for i in range(10):
+    STFT01TestDividedBlocs.append(np.array_split(audio01_STFT_filtered, divisionNumber))
+    STFT02TestDividedBlocs.append(np.array_split(audio02_STFT_filtered, divisionNumber))
+    STFT03TestDividedBlocs.append(np.array_split(audio03_STFT_filtered, divisionNumber))
+    STFT04TestDividedBlocs.append(np.array_split(audio04_STFT_filtered, divisionNumber))
+    STFT05TestDividedBlocs.append(np.array_split(audio05_STFT_filtered, divisionNumber))
+    STFT06TestDividedBlocs.append(np.array_split(audio06_STFT_filtered, divisionNumber))
+    STFT07TestDividedBlocs.append(np.array_split(audio07_STFT_filtered, divisionNumber))
+
+
+# Instânciar vetores para armazenar as energias de cada bloco (N/320 amostras)
+# Energias: 8 energias para cada uma das 10 STFTs
+STFT01TestBlocsEnergy = []
+STFT02TestBlocsEnergy = []
+STFT03TestBlocsEnergy = []
+STFT04TestBlocsEnergy = []
+STFT05TestBlocsEnergy = []
+STFT06TestBlocsEnergy = []
+STFT07TestBlocsEnergy = []
+
+
+# Calcular as 80 energias: 8 energias para cada uma das 10 partes dos STFT
+for i in range(10):
+    for j in range(8):
+        STFT01TestBlocsEnergy.append(np.sum(np.square(STFT01TestDividedBlocs[i][j])))
+        STFT02TestBlocsEnergy.append(np.sum(np.square(STFT02TestDividedBlocs[i][j])))
+        STFT03TestBlocsEnergy.append(np.sum(np.square(STFT03TestDividedBlocs[i][j])))
+        STFT04TestBlocsEnergy.append(np.sum(np.square(STFT04TestDividedBlocs[i][j])))
+        STFT05TestBlocsEnergy.append(np.sum(np.square(STFT05TestDividedBlocs[i][j])))
+        STFT06TestBlocsEnergy.append(np.sum(np.square(STFT06TestDividedBlocs[i][j])))
+        STFT07TestBlocsEnergy.append(np.sum(np.square(STFT07TestDividedBlocs[i][j])))
