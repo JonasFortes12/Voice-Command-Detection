@@ -1,4 +1,5 @@
 import scipy.io
+from scipy.spatial import distance
 import numpy as np
 import sounddevice as sd #sd.play(audio08Data, 44100)
 import matplotlib.pyplot as plt
@@ -554,23 +555,25 @@ STFT09BlocsEnergy
 STFT10BlocsEnergy
 
 
+    # CENTROIDES:
+    
 # Calcular média das energias do áudio "NAO" para o domínio do tempo
-meanTimeEnergy_NO = np.mean([audio01Energies, audio02Energies, audio03Energies, audio04Energies, audio05Energies])
+meanTimeEnergy_NO = np.mean(np.array([audio01Energies, audio02Energies, audio03Energies, audio04Energies, audio05Energies]), axis=0)
 
 # Calcular média das energias do áudio "SIM" para o domínio do tempo
-meanTimeEnergy_YES = np.mean([audio06Energies, audio07Energies, audio08Energies, audio09Energies, audio10Energies])
+meanTimeEnergy_YES = np.mean(np.array([audio06Energies, audio07Energies, audio08Energies, audio09Energies, audio10Energies]), axis=0)
 
 # Calcular média das energias do áudio "NAO" para o domínio de TF
-meanTFEnergy_NO = np.mean([audio01fft_filteredEnergies, audio02fft_filteredEnergies, audio03fft_filteredEnergies, audio04fft_filteredEnergies, audio05fft_filteredEnergies])
+meanTFEnergy_NO = np.mean(np.array([audio01fft_filteredEnergies, audio02fft_filteredEnergies, audio03fft_filteredEnergies, audio04fft_filteredEnergies, audio05fft_filteredEnergies]), axis=0)
 
 # Calcular média das energias do áudio "SIM" para o domínio de TF
-meanTFEnergy_YES = np.mean([audio06fft_filteredEnergies, audio07fft_filteredEnergies, audio08fft_filteredEnergies, audio09fft_filteredEnergies, audio10fft_filteredEnergies])
+meanTFEnergy_YES = np.mean(np.array([audio06fft_filteredEnergies, audio07fft_filteredEnergies, audio08fft_filteredEnergies, audio09fft_filteredEnergies, audio10fft_filteredEnergies]), axis=0)
 
 # Calcular média das energias do áudio "NAO" para o domínio de STFT
-meanSTFTEnergy_NO = np.mean([STFT01BlocsEnergy, STFT02BlocsEnergy, STFT03BlocsEnergy, STFT04BlocsEnergy, STFT05BlocsEnergy])
+meanSTFTEnergy_NO = np.mean(np.array([STFT01BlocsEnergy, STFT02BlocsEnergy, STFT03BlocsEnergy, STFT04BlocsEnergy, STFT05BlocsEnergy]), axis=0)
 
 # Calcular média das energias do áudio "SIM" para o domínio de STFT
-meanSTFTEnergy_YES = np.mean([STFT06BlocsEnergy, STFT07BlocsEnergy, STFT08BlocsEnergy, STFT09BlocsEnergy, STFT10BlocsEnergy])
+meanSTFTEnergy_YES = np.mean(np.array([STFT06BlocsEnergy, STFT07BlocsEnergy, STFT08BlocsEnergy, STFT09BlocsEnergy, STFT10BlocsEnergy]), axis=0)
 
 
 # ________________________________Questão 09________________________________________
@@ -779,3 +782,59 @@ for i in range(10):
         STFT05TestBlocsEnergy.append(np.sum(np.square(STFT05TestDividedBlocs[i][j])))
         STFT06TestBlocsEnergy.append(np.sum(np.square(STFT06TestDividedBlocs[i][j])))
         STFT07TestBlocsEnergy.append(np.sum(np.square(STFT07TestDividedBlocs[i][j])))
+
+# ________________________________Questão 10________________________________________
+
+
+    # Calculo das distâncias Euclidianas para o domínio de Tempo:
+
+# Calcular a distância Euclidiana para a centroide NÃO, no Tempo
+euclideanDist_audio01Test_Time_NO = distance.euclidean(audio01TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio02Test_Time_NO = distance.euclidean(audio02TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio03Test_Time_NO = distance.euclidean(audio03TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio04Test_Time_NO = distance.euclidean(audio04TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio05Test_Time_NO = distance.euclidean(audio05TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio06Test_Time_NO = distance.euclidean(audio06TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio07Test_Time_NO = distance.euclidean(audio07TestEnergies,meanTimeEnergy_NO)
+
+# Calcular a distância Euclidiana para a centroide SIM, no Tempo
+euclideanDist_audio01Test_Time_YES = distance.euclidean(audio01TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio02Test_Time_YES = distance.euclidean(audio02TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio03Test_Time_YES = distance.euclidean(audio03TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio04Test_Time_YES = distance.euclidean(audio04TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio05Test_Time_YES = distance.euclidean(audio05TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio06Test_Time_YES = distance.euclidean(audio06TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio07Test_Time_YES = distance.euclidean(audio07TestEnergies,meanTimeEnergy_YES)
+
+
+
+
+    # Calculo das distâncias Euclidianas para o domínio de TF:
+
+# Calcular a distância Euclidiana para a centroide NÃO, no Tempo
+euclideanDist_audio01Test_FT_NO = distance.euclidean(audio01Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio02Test_FT_NO = distance.euclidean(audio02Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio03Test_FT_NO = distance.euclidean(audio03Testfft_filteredEnergies,meanTimeEnergy_NO)
+
+euclideanDist_audio04Test_FT_NO = distance.euclidean(audio04Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio05Test_FT_NO = distance.euclidean(audio05Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio06Test_FT_NO = distance.euclidean(audio06Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio07Test_FT_NO = distance.euclidean(audio07Testfft_filteredEnergies,meanTimeEnergy_NO)
+
+
+# Calcular a distância Euclidiana para a centroide SIM, no Tempo
+euclideanDist_audio01Test_FT_YES = distance.euclidean(audio01Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio02Test_FT_YES = distance.euclidean(audio02Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio03Test_FT_YES = distance.euclidean(audio03Testfft_filteredEnergies,meanTimeEnergy_YES)
+
+euclideanDist_audio04Test_FT_YES = distance.euclidean(audio04Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio05Test_FT_YES = distance.euclidean(audio05Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio06Test_FT_YES = distance.euclidean(audio06Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio07Test_FT_YES = distance.euclidean(audio07Testfft_filteredEnergies,meanTimeEnergy_YES)
+
+
+
+print(euclideanDist_audio01Test_FT_NO, euclideanDist_audio04Test_FT_NO) #baixo alto
+
+print(euclideanDist_audio01Test_FT_YES, euclideanDist_audio04Test_FT_YES) #alto baixo
+
