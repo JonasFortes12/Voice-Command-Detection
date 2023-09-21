@@ -308,16 +308,16 @@ audio10fft_filteredEnergies = []
 
 # Calcular a energia de cada bloco nos 10 sinais de áudio
 for i in range(divisionNumber):
-    audio01fft_filteredEnergies.append(np.sum(np.square(audio01fftDivided[i])))
-    audio02fft_filteredEnergies.append(np.sum(np.square(audio02fftDivided[i])))
-    audio03fft_filteredEnergies.append(np.sum(np.square(audio03fftDivided[i])))
-    audio04fft_filteredEnergies.append(np.sum(np.square(audio04fftDivided[i])))
-    audio05fft_filteredEnergies.append(np.sum(np.square(audio05fftDivided[i])))
-    audio06fft_filteredEnergies.append(np.sum(np.square(audio06fftDivided[i])))
-    audio07fft_filteredEnergies.append(np.sum(np.square(audio07fftDivided[i])))
-    audio08fft_filteredEnergies.append(np.sum(np.square(audio08fftDivided[i])))
-    audio09fft_filteredEnergies.append(np.sum(np.square(audio09fftDivided[i])))
-    audio10fft_filteredEnergies.append(np.sum(np.square(audio10fftDivided[i])))
+    audio01fft_filteredEnergies.append(np.sum(audio01fftDivided[i]))
+    audio02fft_filteredEnergies.append(np.sum(audio02fftDivided[i]))
+    audio03fft_filteredEnergies.append(np.sum(audio03fftDivided[i]))
+    audio04fft_filteredEnergies.append(np.sum(audio04fftDivided[i]))
+    audio05fft_filteredEnergies.append(np.sum(audio05fftDivided[i]))
+    audio06fft_filteredEnergies.append(np.sum(audio06fftDivided[i]))
+    audio07fft_filteredEnergies.append(np.sum(audio07fftDivided[i]))
+    audio08fft_filteredEnergies.append(np.sum(audio08fftDivided[i]))
+    audio09fft_filteredEnergies.append(np.sum(audio09fftDivided[i]))
+    audio10fft_filteredEnergies.append(np.sum(audio10fftDivided[i]))
     
 # Definir valores do eixo X
 x = np.arange(0, divisionNumber)
@@ -502,59 +502,22 @@ STFT10BlocsEnergy = []
 # Calcular as 80 energias: 8 energias para cada uma das 10 partes dos STFT
 for i in range(10):
     for j in range(8):
-        STFT01BlocsEnergy.append(np.sum(np.square(STFT01DividedBlocs[i][j])))
-        STFT02BlocsEnergy.append(np.sum(np.square(STFT02DividedBlocs[i][j])))
-        STFT03BlocsEnergy.append(np.sum(np.square(STFT03DividedBlocs[i][j])))
-        STFT04BlocsEnergy.append(np.sum(np.square(STFT04DividedBlocs[i][j])))
-        STFT05BlocsEnergy.append(np.sum(np.square(STFT05DividedBlocs[i][j])))
-        STFT06BlocsEnergy.append(np.sum(np.square(STFT06DividedBlocs[i][j])))
-        STFT07BlocsEnergy.append(np.sum(np.square(STFT07DividedBlocs[i][j])))
-        STFT08BlocsEnergy.append(np.sum(np.square(STFT08DividedBlocs[i][j])))
-        STFT09BlocsEnergy.append(np.sum(np.square(STFT09DividedBlocs[i][j])))
-        STFT10BlocsEnergy.append(np.sum(np.square(STFT10DividedBlocs[i][j])))
+        STFT01BlocsEnergy.append(np.sum(STFT01DividedBlocs[i][j]))
+        STFT02BlocsEnergy.append(np.sum(STFT02DividedBlocs[i][j]))
+        STFT03BlocsEnergy.append(np.sum(STFT03DividedBlocs[i][j]))
+        STFT04BlocsEnergy.append(np.sum(STFT04DividedBlocs[i][j]))
+        STFT05BlocsEnergy.append(np.sum(STFT05DividedBlocs[i][j]))
+        STFT06BlocsEnergy.append(np.sum(STFT06DividedBlocs[i][j]))
+        STFT07BlocsEnergy.append(np.sum(STFT07DividedBlocs[i][j]))
+        STFT08BlocsEnergy.append(np.sum(STFT08DividedBlocs[i][j]))
+        STFT09BlocsEnergy.append(np.sum(STFT09DividedBlocs[i][j]))
+        STFT10BlocsEnergy.append(np.sum(STFT10DividedBlocs[i][j]))
   
     
     
 # ________________________________Questão 08________________________________________
     # Há 80 energias em cada domínio do sinal: tempo, TF e STFT
     
-# Energias do domínio do tempo
-audio01Energies 
-audio02Energies
-audio03Energies
-audio04Energies
-audio05Energies
-audio06Energies
-audio07Energies
-audio08Energies
-audio09Energies
-audio10Energies
-
-# Energias do domínio da TF
-audio01fft_filteredEnergies
-audio02fft_filteredEnergies
-audio03fft_filteredEnergies
-audio04fft_filteredEnergies
-audio05fft_filteredEnergies
-audio06fft_filteredEnergies
-audio07fft_filteredEnergies
-audio08fft_filteredEnergies
-audio09fft_filteredEnergies
-audio10fft_filteredEnergies
-
-# Energias do domínio da STFT
-STFT01BlocsEnergy
-STFT02BlocsEnergy
-STFT03BlocsEnergy
-STFT04BlocsEnergy
-STFT05BlocsEnergy
-STFT06BlocsEnergy
-STFT07BlocsEnergy
-STFT08BlocsEnergy
-STFT09BlocsEnergy
-STFT10BlocsEnergy
-
-
     # CENTROIDES:
     
 # Calcular média das energias do áudio "NAO" para o domínio do tempo
@@ -594,9 +557,6 @@ audio04DataTest = audiosTestMatrix[:, 3]
 audio05DataTest = audiosTestMatrix[:, 4]
 audio06DataTest = audiosTestMatrix[:, 5]
 audio07DataTest = audiosTestMatrix[:, 6]
-
-
-
 
 
 
@@ -686,13 +646,13 @@ audio07Testfft_filteredEnergies = []
 
 # Calcular a energia de cada bloco nos 10 sinais de áudio
 for i in range(divisionNumber):
-    audio01Testfft_filteredEnergies.append(np.sum(np.square(audio01TestfftDivided[i])))
-    audio02Testfft_filteredEnergies.append(np.sum(np.square(audio02TestfftDivided[i])))
-    audio03Testfft_filteredEnergies.append(np.sum(np.square(audio03TestfftDivided[i])))
-    audio04Testfft_filteredEnergies.append(np.sum(np.square(audio04TestfftDivided[i])))
-    audio05Testfft_filteredEnergies.append(np.sum(np.square(audio05TestfftDivided[i])))
-    audio06Testfft_filteredEnergies.append(np.sum(np.square(audio06TestfftDivided[i])))
-    audio07Testfft_filteredEnergies.append(np.sum(np.square(audio07TestfftDivided[i])))
+    audio01Testfft_filteredEnergies.append(np.sum(audio01TestfftDivided[i]))
+    audio02Testfft_filteredEnergies.append(np.sum(audio02TestfftDivided[i]))
+    audio03Testfft_filteredEnergies.append(np.sum(audio03TestfftDivided[i]))
+    audio04Testfft_filteredEnergies.append(np.sum(audio04TestfftDivided[i]))
+    audio05Testfft_filteredEnergies.append(np.sum(audio05TestfftDivided[i]))
+    audio06Testfft_filteredEnergies.append(np.sum(audio06TestfftDivided[i]))
+    audio07Testfft_filteredEnergies.append(np.sum(audio07TestfftDivided[i]))
     
     
 
@@ -775,66 +735,83 @@ STFT07TestBlocsEnergy = []
 # Calcular as 80 energias: 8 energias para cada uma das 10 partes dos STFT
 for i in range(10):
     for j in range(8):
-        STFT01TestBlocsEnergy.append(np.sum(np.square(STFT01TestDividedBlocs[i][j])))
-        STFT02TestBlocsEnergy.append(np.sum(np.square(STFT02TestDividedBlocs[i][j])))
-        STFT03TestBlocsEnergy.append(np.sum(np.square(STFT03TestDividedBlocs[i][j])))
-        STFT04TestBlocsEnergy.append(np.sum(np.square(STFT04TestDividedBlocs[i][j])))
-        STFT05TestBlocsEnergy.append(np.sum(np.square(STFT05TestDividedBlocs[i][j])))
-        STFT06TestBlocsEnergy.append(np.sum(np.square(STFT06TestDividedBlocs[i][j])))
-        STFT07TestBlocsEnergy.append(np.sum(np.square(STFT07TestDividedBlocs[i][j])))
+        STFT01TestBlocsEnergy.append(np.sum(STFT01TestDividedBlocs[i][j]))
+        STFT02TestBlocsEnergy.append(np.sum(STFT02TestDividedBlocs[i][j]))
+        STFT03TestBlocsEnergy.append(np.sum(STFT03TestDividedBlocs[i][j]))
+        STFT04TestBlocsEnergy.append(np.sum(STFT04TestDividedBlocs[i][j]))
+        STFT05TestBlocsEnergy.append(np.sum(STFT05TestDividedBlocs[i][j]))
+        STFT06TestBlocsEnergy.append(np.sum(STFT06TestDividedBlocs[i][j]))
+        STFT07TestBlocsEnergy.append(np.sum(STFT07TestDividedBlocs[i][j]))
 
 # ________________________________Questão 10________________________________________
 
 
-    # Calculo das distâncias Euclidianas para o domínio de Tempo:
+# Calculo das distâncias Euclidianas para o domínio de Tempo:
 
-# Calcular a distância Euclidiana para a centroide NÃO, no Tempo
-euclideanDist_audio01Test_Time_NO = distance.euclidean(audio01TestEnergies,meanTimeEnergy_NO)
-euclideanDist_audio02Test_Time_NO = distance.euclidean(audio02TestEnergies,meanTimeEnergy_NO)
-euclideanDist_audio03Test_Time_NO = distance.euclidean(audio03TestEnergies,meanTimeEnergy_NO)
-euclideanDist_audio04Test_Time_NO = distance.euclidean(audio04TestEnergies,meanTimeEnergy_NO)
-euclideanDist_audio05Test_Time_NO = distance.euclidean(audio05TestEnergies,meanTimeEnergy_NO)
-euclideanDist_audio06Test_Time_NO = distance.euclidean(audio06TestEnergies,meanTimeEnergy_NO)
-euclideanDist_audio07Test_Time_NO = distance.euclidean(audio07TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio01Test_Time_untilNO = distance.euclidean(audio01TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio02Test_Time_untilNO = distance.euclidean(audio02TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio03Test_Time_untilNO = distance.euclidean(audio03TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio04Test_Time_untilNO = distance.euclidean(audio04TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio05Test_Time_untilNO = distance.euclidean(audio05TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio06Test_Time_untilNO = distance.euclidean(audio06TestEnergies,meanTimeEnergy_NO)
+euclideanDist_audio07Test_Time_untilNO = distance.euclidean(audio07TestEnergies,meanTimeEnergy_NO)
 
-# Calcular a distância Euclidiana para a centroide SIM, no Tempo
-euclideanDist_audio01Test_Time_YES = distance.euclidean(audio01TestEnergies,meanTimeEnergy_YES)
-euclideanDist_audio02Test_Time_YES = distance.euclidean(audio02TestEnergies,meanTimeEnergy_YES)
-euclideanDist_audio03Test_Time_YES = distance.euclidean(audio03TestEnergies,meanTimeEnergy_YES)
-euclideanDist_audio04Test_Time_YES = distance.euclidean(audio04TestEnergies,meanTimeEnergy_YES)
-euclideanDist_audio05Test_Time_YES = distance.euclidean(audio05TestEnergies,meanTimeEnergy_YES)
-euclideanDist_audio06Test_Time_YES = distance.euclidean(audio06TestEnergies,meanTimeEnergy_YES)
-euclideanDist_audio07Test_Time_YES = distance.euclidean(audio07TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio01Test_Time_untilYes = distance.euclidean(audio01TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio02Test_Time_untilYes = distance.euclidean(audio02TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio03Test_Time_untilYes = distance.euclidean(audio03TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio04Test_Time_untilYes = distance.euclidean(audio04TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio05Test_Time_untilYes = distance.euclidean(audio05TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio06Test_Time_untilYes = distance.euclidean(audio06TestEnergies,meanTimeEnergy_YES)
+euclideanDist_audio07Test_Time_untilYes = distance.euclidean(audio07TestEnergies,meanTimeEnergy_YES)
 
 
+# Calculo das distâncias Euclidianas para o domínio da TF :
+
+euclideanDist_audio01Test_FT_untilNO = distance.euclidean(audio01Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio02Test_FT_untilNO = distance.euclidean(audio02Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio03Test_FT_untilNO = distance.euclidean(audio03Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio04Test_FT_untilNO = distance.euclidean(audio04Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio05Test_FT_untilNO = distance.euclidean(audio05Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio06Test_FT_untilNO = distance.euclidean(audio06Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio07Test_FT_untilNO = distance.euclidean(audio07Testfft_filteredEnergies,meanTimeEnergy_NO)
+
+euclideanDist_audio01Test_FT_untilYes = distance.euclidean(audio01Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio02Test_FT_untilYes = distance.euclidean(audio02Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio03Test_FT_untilYes = distance.euclidean(audio03Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio04Test_FT_untilYes = distance.euclidean(audio04Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio05Test_FT_untilYes = distance.euclidean(audio05Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio06Test_FT_untilYes = distance.euclidean(audio06Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio07Test_FT_untilYes = distance.euclidean(audio07Testfft_filteredEnergies,meanTimeEnergy_YES)
 
 
-    # Calculo das distâncias Euclidianas para o domínio de TF:
+# Calculo das distâncias Euclidianas para o domínio da STFT:
 
-# Calcular a distância Euclidiana para a centroide NÃO, no Tempo
-euclideanDist_audio01Test_FT_NO = distance.euclidean(audio01Testfft_filteredEnergies,meanTimeEnergy_NO)
-euclideanDist_audio02Test_FT_NO = distance.euclidean(audio02Testfft_filteredEnergies,meanTimeEnergy_NO)
-euclideanDist_audio03Test_FT_NO = distance.euclidean(audio03Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio01Test_STFT_untilNO = distance.euclidean(STFT01TestBlocsEnergy,meanTimeEnergy_NO)
+euclideanDist_audio02Test_STFT_untilNO = distance.euclidean(STFT02TestBlocsEnergy,meanTimeEnergy_NO)
+euclideanDist_audio03Test_STFT_untilNO = distance.euclidean(STFT03TestBlocsEnergy,meanTimeEnergy_NO)
+euclideanDist_audio04Test_STFT_untilNO = distance.euclidean(STFT04TestBlocsEnergy,meanTimeEnergy_NO)
+euclideanDist_audio05Test_STFT_untilNO = distance.euclidean(STFT05TestBlocsEnergy,meanTimeEnergy_NO)
+euclideanDist_audio06Test_STFT_untilNO = distance.euclidean(STFT06TestBlocsEnergy,meanTimeEnergy_NO)
+euclideanDist_audio07Test_STFT_untilNO = distance.euclidean(STFT07TestBlocsEnergy,meanTimeEnergy_NO)
 
-euclideanDist_audio04Test_FT_NO = distance.euclidean(audio04Testfft_filteredEnergies,meanTimeEnergy_NO)
-euclideanDist_audio05Test_FT_NO = distance.euclidean(audio05Testfft_filteredEnergies,meanTimeEnergy_NO)
-euclideanDist_audio06Test_FT_NO = distance.euclidean(audio06Testfft_filteredEnergies,meanTimeEnergy_NO)
-euclideanDist_audio07Test_FT_NO = distance.euclidean(audio07Testfft_filteredEnergies,meanTimeEnergy_NO)
-
-
-# Calcular a distância Euclidiana para a centroide SIM, no Tempo
-euclideanDist_audio01Test_FT_YES = distance.euclidean(audio01Testfft_filteredEnergies,meanTimeEnergy_YES)
-euclideanDist_audio02Test_FT_YES = distance.euclidean(audio02Testfft_filteredEnergies,meanTimeEnergy_YES)
-euclideanDist_audio03Test_FT_YES = distance.euclidean(audio03Testfft_filteredEnergies,meanTimeEnergy_YES)
-
-euclideanDist_audio04Test_FT_YES = distance.euclidean(audio04Testfft_filteredEnergies,meanTimeEnergy_YES)
-euclideanDist_audio05Test_FT_YES = distance.euclidean(audio05Testfft_filteredEnergies,meanTimeEnergy_YES)
-euclideanDist_audio06Test_FT_YES = distance.euclidean(audio06Testfft_filteredEnergies,meanTimeEnergy_YES)
-euclideanDist_audio07Test_FT_YES = distance.euclidean(audio07Testfft_filteredEnergies,meanTimeEnergy_YES)
+euclideanDist_audio01Test_STFT_untilYes = distance.euclidean(STFT01TestBlocsEnergy,meanTimeEnergy_YES)
+euclideanDist_audio02Test_STFT_untilYes = distance.euclidean(STFT02TestBlocsEnergy,meanTimeEnergy_YES)
+euclideanDist_audio03Test_STFT_untilYes = distance.euclidean(STFT03TestBlocsEnergy,meanTimeEnergy_YES)
+euclideanDist_audio04Test_STFT_untilYes = distance.euclidean(STFT04TestBlocsEnergy,meanTimeEnergy_YES)
+euclideanDist_audio05Test_STFT_untilYes = distance.euclidean(STFT05TestBlocsEnergy,meanTimeEnergy_YES)
+euclideanDist_audio06Test_STFT_untilYes = distance.euclidean(STFT06TestBlocsEnergy,meanTimeEnergy_YES)
+euclideanDist_audio07Test_STFT_untilYes = distance.euclidean(STFT07TestBlocsEnergy,meanTimeEnergy_YES)
 
 
+print(euclideanDist_audio01Test_Time_untilNO) #valor alto
+print(euclideanDist_audio01Test_Time_untilYes) #valor baixo 
 
-print(euclideanDist_audio01Test_FT_NO, euclideanDist_audio04Test_FT_NO) #baixo alto
+print(euclideanDist_audio01Test_FT_untilNO) #valor alto
+print(euclideanDist_audio01Test_FT_untilYes) #valor baixo 
 
-print(euclideanDist_audio01Test_FT_YES, euclideanDist_audio04Test_FT_YES) #alto baixo
+print(euclideanDist_audio01Test_STFT_untilNO) #valor alto
+print(euclideanDist_audio01Test_STFT_untilYes) #valor baixo 
+
+
+
 
