@@ -160,16 +160,16 @@ plt.show()
 # ________________________________Questão 03________________________________________
 
 # Calcular o módulo ao quadrado da transformada de Fourier de cada sinal de áudio
-audio01fft = np.abs(np.fft.fftshift(np.fft.fft(audio01Data)))**2
-audio02fft = np.abs(np.fft.fftshift(np.fft.fft(audio02Data)))**2
-audio03fft = np.abs(np.fft.fftshift(np.fft.fft(audio03Data)))**2
-audio04fft = np.abs(np.fft.fftshift(np.fft.fft(audio04Data)))**2
-audio05fft = np.abs(np.fft.fftshift(np.fft.fft(audio05Data)))**2
-audio06fft = np.abs(np.fft.fftshift(np.fft.fft(audio06Data)))**2
-audio07fft = np.abs(np.fft.fftshift(np.fft.fft(audio07Data)))**2
-audio08fft = np.abs(np.fft.fftshift(np.fft.fft(audio08Data)))**2
-audio09fft = np.abs(np.fft.fftshift(np.fft.fft(audio09Data)))**2
-audio10fft = np.abs(np.fft.fftshift(np.fft.fft(audio10Data)))**2
+audio01fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio01Data))))
+audio02fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio02Data))))
+audio03fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio03Data))))
+audio04fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio04Data))))
+audio05fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio05Data))))
+audio06fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio06Data))))
+audio07fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio07Data))))
+audio08fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio08Data))))
+audio09fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio09Data))))
+audio10fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio10Data))))
 
 # Definir valores do eixo X
 x = np.linspace(-np.pi, np.pi, audiosMatrix.shape[0])
@@ -382,16 +382,16 @@ audio10Divided = np.array_split(audio10Data, divisionNumber)
 
 # Calcular o módulo ao quadrado da transformada de Fourier de cada bloco dos sinais de áudio
 # Transformada de Fourier de tempo curto (short-time Fourier transform – STFT)
-audio01_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio01Divided)))**2
-audio02_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio02Divided)))**2
-audio03_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio03Divided)))**2
-audio04_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio04Divided)))**2
-audio05_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio05Divided)))**2
-audio06_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio06Divided)))**2
-audio07_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio07Divided)))**2
-audio08_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio08Divided)))**2
-audio09_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio09Divided)))**2
-audio10_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio10Divided)))**2
+audio01_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio01Divided))))
+audio02_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio02Divided))))
+audio03_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio03Divided))))
+audio04_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio04Divided))))
+audio05_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio05Divided))))
+audio06_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio06Divided))))
+audio07_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio07Divided))))
+audio08_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio08Divided))))
+audio09_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio09Divided))))
+audio10_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio10Divided))))
 
 
 # Definir valores do eixo X
@@ -597,13 +597,13 @@ for i in range(divisionNumber):
     #______________________ Cálculo de energias para o domínio de TF ________________________
      
 # Calcular o módulo ao quadrado da transformada de Fourier de cada sinal de teste
-audio01fft = np.abs(np.fft.fftshift(np.fft.fft(audio01DataTest)))**2
-audio02fft = np.abs(np.fft.fftshift(np.fft.fft(audio02DataTest)))**2
-audio03fft = np.abs(np.fft.fftshift(np.fft.fft(audio03DataTest)))**2
-audio04fft = np.abs(np.fft.fftshift(np.fft.fft(audio04DataTest)))**2
-audio05fft = np.abs(np.fft.fftshift(np.fft.fft(audio05DataTest)))**2
-audio06fft = np.abs(np.fft.fftshift(np.fft.fft(audio06DataTest)))**2
-audio07fft = np.abs(np.fft.fftshift(np.fft.fft(audio07DataTest)))**2
+audio01fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio01DataTest))))
+audio02fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio02DataTest))))
+audio03fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio03DataTest))))
+audio04fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio04DataTest))))
+audio05fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio05DataTest))))
+audio06fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio06DataTest))))
+audio07fft = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio07DataTest))))
 
 # Definir valores do eixo X
 x = np.linspace(-np.pi, np.pi, audiosTestMatrix.shape[0])
@@ -671,13 +671,13 @@ audio07TestDivided = np.array_split(audio07DataTest, divisionNumber)
 
 # Calcular o módulo ao quadrado da transformada de Fourier de cada bloco dos sinais de teste
 # Transformada de Fourier de tempo curto (short-time Fourier transform – STFT)
-audio01Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio01TestDivided)))**2
-audio02Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio02TestDivided)))**2
-audio03Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio03TestDivided)))**2
-audio04Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio04TestDivided)))**2
-audio05Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio05TestDivided)))**2
-audio06Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio06TestDivided)))**2
-audio07Test_STFT = np.abs(np.fft.fftshift(np.fft.fft(audio07TestDivided)))**2
+audio01Test_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio01TestDivided))))
+audio02Test_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio02TestDivided))))
+audio03Test_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio03TestDivided))))
+audio04Test_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio04TestDivided))))
+audio05Test_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio05TestDivided))))
+audio06Test_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio06TestDivided))))
+audio07Test_STFT = np.square(np.abs(np.fft.fftshift(np.fft.fft(audio07TestDivided))))
 
 
 # Definir valores do eixo X
@@ -755,6 +755,14 @@ euclideanDist_audio04Test_Time_untilNO = distance.euclidean(audio04TestEnergies,
 euclideanDist_audio05Test_Time_untilNO = distance.euclidean(audio05TestEnergies,meanTimeEnergy_NO)
 euclideanDist_audio06Test_Time_untilNO = distance.euclidean(audio06TestEnergies,meanTimeEnergy_NO)
 euclideanDist_audio07Test_Time_untilNO = distance.euclidean(audio07TestEnergies,meanTimeEnergy_NO)
+euclideanDist_Time_untilNO = [euclideanDist_audio01Test_Time_untilNO,
+                              euclideanDist_audio02Test_Time_untilNO,
+                              euclideanDist_audio03Test_Time_untilNO,
+                              euclideanDist_audio04Test_Time_untilNO,
+                              euclideanDist_audio05Test_Time_untilNO,
+                              euclideanDist_audio06Test_Time_untilNO,
+                              euclideanDist_audio07Test_Time_untilNO]
+
 
 euclideanDist_audio01Test_Time_untilYes = distance.euclidean(audio01TestEnergies,meanTimeEnergy_YES)
 euclideanDist_audio02Test_Time_untilYes = distance.euclidean(audio02TestEnergies,meanTimeEnergy_YES)
@@ -763,55 +771,120 @@ euclideanDist_audio04Test_Time_untilYes = distance.euclidean(audio04TestEnergies
 euclideanDist_audio05Test_Time_untilYes = distance.euclidean(audio05TestEnergies,meanTimeEnergy_YES)
 euclideanDist_audio06Test_Time_untilYes = distance.euclidean(audio06TestEnergies,meanTimeEnergy_YES)
 euclideanDist_audio07Test_Time_untilYes = distance.euclidean(audio07TestEnergies,meanTimeEnergy_YES)
-
+euclideanDist_Time_untilYes = [euclideanDist_audio01Test_Time_untilYes,
+                               euclideanDist_audio02Test_Time_untilYes,
+                               euclideanDist_audio03Test_Time_untilYes,
+                               euclideanDist_audio04Test_Time_untilYes,
+                               euclideanDist_audio05Test_Time_untilYes,
+                               euclideanDist_audio06Test_Time_untilYes,
+                               euclideanDist_audio07Test_Time_untilYes]
 
 # Calculo das distâncias Euclidianas para o domínio da TF :
 
-euclideanDist_audio01Test_FT_untilNO = distance.euclidean(audio01Testfft_filteredEnergies,meanTimeEnergy_NO)
-euclideanDist_audio02Test_FT_untilNO = distance.euclidean(audio02Testfft_filteredEnergies,meanTimeEnergy_NO)
-euclideanDist_audio03Test_FT_untilNO = distance.euclidean(audio03Testfft_filteredEnergies,meanTimeEnergy_NO)
-euclideanDist_audio04Test_FT_untilNO = distance.euclidean(audio04Testfft_filteredEnergies,meanTimeEnergy_NO)
-euclideanDist_audio05Test_FT_untilNO = distance.euclidean(audio05Testfft_filteredEnergies,meanTimeEnergy_NO)
-euclideanDist_audio06Test_FT_untilNO = distance.euclidean(audio06Testfft_filteredEnergies,meanTimeEnergy_NO)
-euclideanDist_audio07Test_FT_untilNO = distance.euclidean(audio07Testfft_filteredEnergies,meanTimeEnergy_NO)
+euclideanDist_audio01Test_FT_untilNO = distance.euclidean(audio01Testfft_filteredEnergies,meanTFEnergy_NO)
+euclideanDist_audio02Test_FT_untilNO = distance.euclidean(audio02Testfft_filteredEnergies,meanTFEnergy_NO)
+euclideanDist_audio03Test_FT_untilNO = distance.euclidean(audio03Testfft_filteredEnergies,meanTFEnergy_NO)
+euclideanDist_audio04Test_FT_untilNO = distance.euclidean(audio04Testfft_filteredEnergies,meanTFEnergy_NO)
+euclideanDist_audio05Test_FT_untilNO = distance.euclidean(audio05Testfft_filteredEnergies,meanTFEnergy_NO)
+euclideanDist_audio06Test_FT_untilNO = distance.euclidean(audio06Testfft_filteredEnergies,meanTFEnergy_NO)
+euclideanDist_audio07Test_FT_untilNO = distance.euclidean(audio07Testfft_filteredEnergies,meanTFEnergy_NO)
+euclideanDist_FT_untilNO = [euclideanDist_audio01Test_FT_untilNO,
+                            euclideanDist_audio02Test_FT_untilNO,
+                            euclideanDist_audio03Test_FT_untilNO,
+                            euclideanDist_audio04Test_FT_untilNO,
+                            euclideanDist_audio05Test_FT_untilNO,
+                            euclideanDist_audio06Test_FT_untilNO,
+                            euclideanDist_audio07Test_FT_untilNO]
 
-euclideanDist_audio01Test_FT_untilYes = distance.euclidean(audio01Testfft_filteredEnergies,meanTimeEnergy_YES)
-euclideanDist_audio02Test_FT_untilYes = distance.euclidean(audio02Testfft_filteredEnergies,meanTimeEnergy_YES)
-euclideanDist_audio03Test_FT_untilYes = distance.euclidean(audio03Testfft_filteredEnergies,meanTimeEnergy_YES)
-euclideanDist_audio04Test_FT_untilYes = distance.euclidean(audio04Testfft_filteredEnergies,meanTimeEnergy_YES)
-euclideanDist_audio05Test_FT_untilYes = distance.euclidean(audio05Testfft_filteredEnergies,meanTimeEnergy_YES)
-euclideanDist_audio06Test_FT_untilYes = distance.euclidean(audio06Testfft_filteredEnergies,meanTimeEnergy_YES)
-euclideanDist_audio07Test_FT_untilYes = distance.euclidean(audio07Testfft_filteredEnergies,meanTimeEnergy_YES)
 
+euclideanDist_audio01Test_FT_untilYes = distance.euclidean(audio01Testfft_filteredEnergies,meanTFEnergy_YES)
+euclideanDist_audio02Test_FT_untilYes = distance.euclidean(audio02Testfft_filteredEnergies,meanTFEnergy_YES)
+euclideanDist_audio03Test_FT_untilYes = distance.euclidean(audio03Testfft_filteredEnergies,meanTFEnergy_YES)
+euclideanDist_audio04Test_FT_untilYes = distance.euclidean(audio04Testfft_filteredEnergies,meanTFEnergy_YES)
+euclideanDist_audio05Test_FT_untilYes = distance.euclidean(audio05Testfft_filteredEnergies,meanTFEnergy_YES)
+euclideanDist_audio06Test_FT_untilYes = distance.euclidean(audio06Testfft_filteredEnergies,meanTFEnergy_YES)
+euclideanDist_audio07Test_FT_untilYes = distance.euclidean(audio07Testfft_filteredEnergies,meanTFEnergy_YES)
+euclideanDist_FT_untilYes = [euclideanDist_audio01Test_FT_untilYes,
+                             euclideanDist_audio02Test_FT_untilYes,
+                             euclideanDist_audio03Test_FT_untilYes,
+                             euclideanDist_audio04Test_FT_untilYes,
+                             euclideanDist_audio05Test_FT_untilYes,
+                             euclideanDist_audio06Test_FT_untilYes,
+                             euclideanDist_audio07Test_FT_untilYes]
 
 # Calculo das distâncias Euclidianas para o domínio da STFT:
 
-euclideanDist_audio01Test_STFT_untilNO = distance.euclidean(STFT01TestBlocsEnergy,meanTimeEnergy_NO)
-euclideanDist_audio02Test_STFT_untilNO = distance.euclidean(STFT02TestBlocsEnergy,meanTimeEnergy_NO)
-euclideanDist_audio03Test_STFT_untilNO = distance.euclidean(STFT03TestBlocsEnergy,meanTimeEnergy_NO)
-euclideanDist_audio04Test_STFT_untilNO = distance.euclidean(STFT04TestBlocsEnergy,meanTimeEnergy_NO)
-euclideanDist_audio05Test_STFT_untilNO = distance.euclidean(STFT05TestBlocsEnergy,meanTimeEnergy_NO)
-euclideanDist_audio06Test_STFT_untilNO = distance.euclidean(STFT06TestBlocsEnergy,meanTimeEnergy_NO)
-euclideanDist_audio07Test_STFT_untilNO = distance.euclidean(STFT07TestBlocsEnergy,meanTimeEnergy_NO)
-
-euclideanDist_audio01Test_STFT_untilYes = distance.euclidean(STFT01TestBlocsEnergy,meanTimeEnergy_YES)
-euclideanDist_audio02Test_STFT_untilYes = distance.euclidean(STFT02TestBlocsEnergy,meanTimeEnergy_YES)
-euclideanDist_audio03Test_STFT_untilYes = distance.euclidean(STFT03TestBlocsEnergy,meanTimeEnergy_YES)
-euclideanDist_audio04Test_STFT_untilYes = distance.euclidean(STFT04TestBlocsEnergy,meanTimeEnergy_YES)
-euclideanDist_audio05Test_STFT_untilYes = distance.euclidean(STFT05TestBlocsEnergy,meanTimeEnergy_YES)
-euclideanDist_audio06Test_STFT_untilYes = distance.euclidean(STFT06TestBlocsEnergy,meanTimeEnergy_YES)
-euclideanDist_audio07Test_STFT_untilYes = distance.euclidean(STFT07TestBlocsEnergy,meanTimeEnergy_YES)
-
-
-print(euclideanDist_audio01Test_Time_untilNO) #valor alto
-print(euclideanDist_audio01Test_Time_untilYes) #valor baixo 
-
-print(euclideanDist_audio01Test_FT_untilNO) #valor alto
-print(euclideanDist_audio01Test_FT_untilYes) #valor baixo 
-
-print(euclideanDist_audio01Test_STFT_untilNO) #valor alto
-print(euclideanDist_audio01Test_STFT_untilYes) #valor baixo 
+euclideanDist_audio01Test_STFT_untilNO = distance.euclidean(STFT01TestBlocsEnergy,meanSTFTEnergy_NO)
+euclideanDist_audio02Test_STFT_untilNO = distance.euclidean(STFT02TestBlocsEnergy,meanSTFTEnergy_NO)
+euclideanDist_audio03Test_STFT_untilNO = distance.euclidean(STFT03TestBlocsEnergy,meanSTFTEnergy_NO)
+euclideanDist_audio04Test_STFT_untilNO = distance.euclidean(STFT04TestBlocsEnergy,meanSTFTEnergy_NO)
+euclideanDist_audio05Test_STFT_untilNO = distance.euclidean(STFT05TestBlocsEnergy,meanSTFTEnergy_NO)
+euclideanDist_audio06Test_STFT_untilNO = distance.euclidean(STFT06TestBlocsEnergy,meanSTFTEnergy_NO)
+euclideanDist_audio07Test_STFT_untilNO = distance.euclidean(STFT07TestBlocsEnergy,meanSTFTEnergy_NO)
+euclideanDist_STFT_untilNO = [euclideanDist_audio01Test_STFT_untilNO,
+                               euclideanDist_audio02Test_STFT_untilNO,
+                               euclideanDist_audio03Test_STFT_untilNO,
+                               euclideanDist_audio04Test_STFT_untilNO,
+                               euclideanDist_audio05Test_STFT_untilNO,
+                               euclideanDist_audio06Test_STFT_untilNO,
+                               euclideanDist_audio07Test_STFT_untilNO]
 
 
+
+euclideanDist_audio01Test_STFT_untilYes = distance.euclidean(STFT01TestBlocsEnergy,meanSTFTEnergy_YES)
+euclideanDist_audio02Test_STFT_untilYes = distance.euclidean(STFT02TestBlocsEnergy,meanSTFTEnergy_YES)
+euclideanDist_audio03Test_STFT_untilYes = distance.euclidean(STFT03TestBlocsEnergy,meanSTFTEnergy_YES)
+euclideanDist_audio04Test_STFT_untilYes = distance.euclidean(STFT04TestBlocsEnergy,meanSTFTEnergy_YES)
+euclideanDist_audio05Test_STFT_untilYes = distance.euclidean(STFT05TestBlocsEnergy,meanSTFTEnergy_YES)
+euclideanDist_audio06Test_STFT_untilYes = distance.euclidean(STFT06TestBlocsEnergy,meanSTFTEnergy_YES)
+euclideanDist_audio07Test_STFT_untilYes = distance.euclidean(STFT07TestBlocsEnergy,meanSTFTEnergy_YES)
+euclideanDist_STFT_untilYes = [euclideanDist_audio01Test_STFT_untilYes,
+                              euclideanDist_audio02Test_STFT_untilYes,
+                              euclideanDist_audio03Test_STFT_untilYes,
+                              euclideanDist_audio04Test_STFT_untilYes,
+                              euclideanDist_audio05Test_STFT_untilYes,
+                              euclideanDist_audio06Test_STFT_untilYes,
+                              euclideanDist_audio07Test_STFT_untilYes]
+
+
+
+TimeDomainHits = 0
+FTDomainHits = 0
+STFTDomainHits = 0
+
+# Comparação de acertos com os áudios NÃO
+for i in range(3):
+    if(euclideanDist_Time_untilNO[i]<euclideanDist_Time_untilYes[i]):
+        TimeDomainHits += 1      
+    if(euclideanDist_FT_untilNO[i]<euclideanDist_FT_untilYes[i]):
+        FTDomainHits += 1 
+    if(euclideanDist_STFT_untilNO[i]<euclideanDist_STFT_untilYes[i]):
+        STFTDomainHits += 1 
+
+# Comparação de acertos com os áudios SIM
+for i in range(3,7):
+    if(euclideanDist_Time_untilNO[i]>euclideanDist_Time_untilYes[i]):
+        TimeDomainHits += 1
+    if(euclideanDist_FT_untilNO[i]>euclideanDist_FT_untilYes[i]):
+        FTDomainHits += 1 
+    if(euclideanDist_STFT_untilNO[i]>euclideanDist_STFT_untilYes[i]):
+        STFTDomainHits += 1 
+
+
+print(TimeDomainHits)
+print(FTDomainHits)
+print(STFTDomainHits)
+
+'''
+______________________________ Desenpendo dos Domínios ________________________________
+
+    (Descrição dos resultados aqui)
+
+
+
+
+
+
+'''
 
 
