@@ -871,20 +871,34 @@ for i in range(3,7):
         STFTDomainHits += 1 
 
 
-print(TimeDomainHits)
-print(FTDomainHits)
-print(STFTDomainHits)
+print(
+    f'''
+    ______________________________ Acurácias ________________________________
 
-'''
-______________________________ Desenpendo dos Domínios ________________________________
+        Domínio do Tempo: {TimeDomainHits}/7
+        Domínio de FT:    {FTDomainHits}/7
+        Domínio de STFT:  {STFTDomainHits}/7
 
-    (Descrição dos resultados aqui)
-
-
-
-
-
-
-'''
-
-
+        Ao observar os valores de acurácia em cada domínio, observa-se que o domínio
+    da Transformada de Fourier(FT) obteve a maior acurácia. Em contrapatida, o domínio
+    com menor acurácia foi o do Tempo.
+    
+        O domínio menos preciso foi o do tempo, pois o sinal neste domínio não caracteriza
+    claramente o espectro de frequências presentes no áudio. Ou seja, considerando que para 
+    reconhecer os padrões que caracterizam os áudios da palavra "SIM" e da palavra "NÃO"
+    é preciso analizar em que frequências as amostras dos sinais são predomiantes,
+    o domínio do tempo é a pior escolha para tal analise: o menos preciso. 
+    
+        O segundo domínio menos preciso foi o da Short Time Fourier Transform(STFT).
+    Este domínio é normalmente usado para sinais não estacionários, pois permite a analise
+    das variações espectrais ao longo do tempo, ou seja, leva em consideração a evolução
+    temporal das caracteristicas do áudio. Assim, para este experimento em específico não
+    apresentou uma acurácia satisfatória.
+    
+        O domínio da Transformada de Fouruier apresentou a maior acurácia, pois permite
+    analisar precisamente as características espectrais dos sinais, como as frequências
+    dominantes de cada classe de áudio. Ou seja, recomhecer os padrões de frequências 
+    dos sinais de fala.
+    
+    '''
+)
